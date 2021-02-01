@@ -1,0 +1,49 @@
+.preview {
+
+  &__posters {
+    font-size: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 38rpx;
+  }
+
+  &__poster-item {
+    display: inline-block;
+    vertical-align: middle;
+    width: 200rpx;
+    height: 300rpx;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: scale(0.9);
+    transition: all 0.3s;
+    margin-right: 20px;
+
+    &--active {
+      transform: scale(1);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__name {
+    font-size: 36rpx;
+    font-weight: 500;
+    line-height: 56rpx;
+    margin-bottom: 30rpx;
+  }
+
+  &__descriptions {
+    font-size: 28rpx;
+    line-height: 44rpx;
+  }
+
+  &__description-item {
+    margin-bottom: 26rpx;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
