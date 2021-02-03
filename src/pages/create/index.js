@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Button } from '@tarojs/components';
+import { Modal } from '@components';
 import Filter from './components/filter';
 import Preview from './components/preview';
 import './index.less';
@@ -28,6 +29,8 @@ const list = [
 const Create = () => {
   const [id, setId] = useState(1001);
 
+  const [visible, setVisible] = useState(true);
+
   const handleCreate = () => console.log('创建游戏');
 
   return (
@@ -41,6 +44,13 @@ const Create = () => {
       >
         创建游戏
       </Button>
+      <Modal
+        visible={visible}
+        onConfirm={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+      >
+        Modal 组件内容区域
+      </Modal>
     </View>
   );
 };

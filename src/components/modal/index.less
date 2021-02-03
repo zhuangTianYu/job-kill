@@ -1,0 +1,45 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 100;
+
+  &__content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 80%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 10rpx;
+  }
+
+  &__header {
+    line-height: 90rpx;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  &__body {
+    padding: 50rpx 20rpx;
+    min-height: 160rpx;
+  }
+
+  &__footer {
+    display: flex;
+    line-height: 90rpx;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  &__button {
+    width: 100%;
+
+    &:first-child {
+      color: rgba(0, 0, 0, 0.7);
+      border-right: 1px solid #f0f0f0;
+    }
+  }
+}
