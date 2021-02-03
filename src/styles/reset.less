@@ -8,6 +8,18 @@ view {
   box-sizing: border-box;
 }
 
+button[type="primary"] {
+  background-color: #434343!important;
+
+  &.button-hover {
+    background-color: rgba(#262626, 0.9)!important;
+  }
+}
+
+button[aria-disabled="true"] {
+  color: rgba(0, 0, 0, 0.3);
+}
+
 radio {
   margin-right: 16rpx;
 
