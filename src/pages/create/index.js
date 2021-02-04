@@ -31,7 +31,7 @@ const Create = () => {
 
   const [visible, setVisible] = useState(false);
 
-  const handleCreate = () => console.log('创建游戏');
+  const handleCreate = () => setVisible(true);
 
   return (
     <View className="create">
