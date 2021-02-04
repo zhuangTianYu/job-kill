@@ -32,8 +32,8 @@ const Create = () => {
   const [visible, setVisible] = useState(false);
 
   const handleCreate = () => {
-    // setVisible(true);
-    Toast.show('Toast 消息提示').then(() => console.log(123));
+    setVisible(true);
+    // Toast.show('Toast 消息提示').then(() => console.log(123));
   };
 
   return (
@@ -52,7 +52,7 @@ const Create = () => {
         onConfirm={() => setVisible(false)}
         onCancel={() => setVisible(false)}
       >
-        Modal 组件内容区域
+        新引入的函数引型及其原型，包含 async 和 generator 函数以及他们的组合。
       </Modal>
     </View>
   );
