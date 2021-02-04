@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Button } from '@tarojs/components';
-import { Modal } from '@components';
+import { Modal, Toast } from '@components';
 import Filter from './components/filter';
 import Preview from './components/preview';
 import './index.less';
@@ -31,7 +31,10 @@ const Create = () => {
 
   const [visible, setVisible] = useState(false);
 
-  const handleCreate = () => setVisible(true);
+  const handleCreate = () => {
+    // setVisible(true);
+    Toast.show('Toast 消息提示').then(() => console.log(123));
+  };
 
   return (
     <View className="create">
