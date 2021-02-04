@@ -41,17 +41,6 @@ const Preview = props => {
               }}
             />
           ))}
-          {Array.from({ length: 3 }).map((item, index) => (
-            <View
-              className={classnames([
-                'preview__poster-item',
-                'preview__poster-item--coming',
-              ])}
-              key={`coming-${index}`}
-            >
-              敬请期待
-            </View>
-          ))}
         </ScrollView>
       </View>
       <View className="preview__name">
