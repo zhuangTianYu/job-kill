@@ -29,7 +29,7 @@ const list = [
 const Create = () => {
   const [id, setId] = useState(1001);
 
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const handleCreate = () => console.log('创建游戏');
 
