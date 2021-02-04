@@ -82,7 +82,7 @@ const Create = () => {
         onConfirm={() => setVisible(false)}
         onCancel={() => setVisible(false)}
       >
-        新引入的函数引型及其原型，包含 async 和 generator 函数以及他们的组合。
+        为保证游戏体验，请「当面」或在「群语音通话」的前提下进行。
       </Modal>
     </View>
   );
