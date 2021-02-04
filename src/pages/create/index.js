@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Button } from '@tarojs/components';
-import { Modal, Toast } from '@components';
+import { Modal } from '@components';
 import Filter from './components/filter';
 import Preview from './components/preview';
+import { MEMBER_COUNTS, SCENES } from '@constant';
 import './index.less';
 
 const list = [
@@ -26,20 +27,49 @@ const list = [
   },
 ];
 
+const filters = [
+  {
+    label: '人数',
+    field: 'memberCount',
+    values: MEMBER_COUNTS,
+  },
+  {
+    label: '场景',
+    field: 'scene',
+    values: SCENES,
+  },
+];
+
 const Create = () => {
   const [id, setId] = useState(1001);
 
   const [visible, setVisible] = useState(false);
 
+  const [params, setParams] = useState({
+    memberCount: MEMBER_COUNTS[0].value,
+    scene: SCENES[0].value,
+  });
+
   const handleCreate = () => {
     setVisible(true);
-    // Toast.show('Toast 消息提示').then(() => console.log(123));
   };
+
+  useEffect(() => {
+    console.log(params);
+  }, [params])
 
   return (
     <View className="create">
-      <Filter />
-      <Preview id={id} list={list} onChange={nextId => setId(nextId)} />
+      <Filter
+        params={params}
+        filters={filters}
+        onChange={nextParams => setParams(nextParams)}
+      />
+      <Preview
+        id={id}
+        list={list}
+        onChange={nextId => setId(nextId)}
+      />
       <Button
         className="create__button"
         type="primary"
