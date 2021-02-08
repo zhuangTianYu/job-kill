@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "job-kill",
 	"description": "工作杀",
-	"appid": "touristappid",
+	"appid": "wx037ea37196b1d386",
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
