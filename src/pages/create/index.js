@@ -4,6 +4,7 @@ import { Modal } from '@components';
 import Filter from './components/filter';
 import Preview from './components/preview';
 import { MEMBER_COUNTS, SCENES } from '@constant';
+import { navigateTo } from '@utils';
 import './index.less';
 
 const list = [
@@ -79,7 +80,10 @@ const Create = () => {
       </Button>
       <Modal
         visible={visible}
-        onConfirm={() => setVisible(false)}
+        onConfirm={() => {
+          setVisible(false);
+          navigateTo('login');
+        }}
         onCancel={() => setVisible(false)}
       >
         为保证游戏体验，请「当面」或在「群语音通话」的前提下进行。
