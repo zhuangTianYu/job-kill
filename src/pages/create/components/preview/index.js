@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { View, ScrollView } from '@tarojs/components';
+import { View, Text, ScrollView } from '@tarojs/components';
 import './index.less';
 
 const Preview = props => {
@@ -43,19 +43,31 @@ const Preview = props => {
           ))}
         </ScrollView>
       </View>
-      <View className="preview__name">
-        {listMap[id] && listMap[id].name}
-      </View>
-      <View className="preview__descriptions">
-        {listMap[id] && listMap[id].description.map((item, index) => (
-          <View
-            className="preview__description-item"
-            key={index}
-          >
-            {item}
+      {listMap[id] && (
+        <>
+          <View className="preview__name">
+            {listMap[id].name}
           </View>
-        ))}
-      </View>
+          <View className="preview__information">
+            <Text className="preview__create-time">
+              发布时间：{listMap[id].createTime}
+            </Text>
+            <Text className="preview__member-count">
+              人数：{listMap[id].memberCount}人
+            </Text>
+          </View>
+          <View className="preview__descriptions">
+            {listMap[id].description.map((item, index) => (
+              <View
+                className="preview__description-item"
+                key={index}
+              >
+                {item}
+              </View>
+            ))}
+          </View>
+        </>
+      )}
     </View>
   );
 };

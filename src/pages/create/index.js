@@ -11,6 +11,8 @@ const list = [
   {
     id: 1001,
     name: '剧本杀1001',
+    createTime: '2020-01-01',
+    memberCount: 4,
     poster: 'https://img.zcool.cn/community/01eaf95bcdec2ca801213dea11f225.jpg',
     description: [
       '到南京时，有朋友约去游逛，勾留7了一日；第二日上午便须渡江到浦口，下午上车北去。父亲因为事忙，本已说定不送我，叫旅馆里一个熟识的茶房8陪我同去。',
@@ -20,6 +22,8 @@ const list = [
   {
     id: 1002,
     name: '剧本杀1002',
+    createTime: '2020-01-03',
+    memberCount: 6,
     poster: 'https://img.zcool.cn/community/01eaf95bcdec2ca801213dea11f225.jpg',
     description: [
       '我们过了江，进了车站。我买票，他忙着照看行李。',
