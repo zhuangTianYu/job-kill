@@ -86,7 +86,7 @@ const Create = () => {
         visible={visible}
         onConfirm={() => {
           setVisible(false);
-          navigateTo('login');
+          navigateTo('choose');
         }}
         onCancel={() => setVisible(false)}
       >

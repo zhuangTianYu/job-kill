@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { View, Image, Button } from '@tarojs/components';
+import { navigateTo } from '@utils';
 import './index.less';
 
 const roles = [
@@ -96,7 +97,13 @@ const Choose = () => {
         })}
       </View>
       <View className="choose__button-group">
-        <Button className="choose__ready" type="primary">准备</Button>
+        <Button
+          className="choose__ready"
+          type="primary"
+          onClick={() => navigateTo('login')}
+        >
+          准备
+        </Button>
       </View>
     </View>
   );
