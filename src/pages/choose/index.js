@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { View, Image, Button } from '@tarojs/components';
-import { Modal } from '@components';
+import { Modal, Toast } from '@components';
 import { navigateTo } from '@utils';
 import './index.less';
 
@@ -32,27 +32,11 @@ const roles = [
   },
 ];
 
-const users = [
-  {
-    userId: 2001,
-    userName: '周杰伦',
-    userAvatar: 'https://tse3-mm.cn.bing.net/th/id/OIP.3t-Xs896vEZEb-xDyvhXqQHaHa',
-  },
-  {
-    userId: 2002,
-    userName: '王力宏的名字特别长',
-    userAvatar: 'https://tse1-mm.cn.bing.net/th/id/OIP.cP7NYl808r15j01i5mzI7AHaHa',
-  },
-  {
-    userId: 2004,
-    userName: '陈冠希',
-    userAvatar: 'https://tse2-mm.cn.bing.net/th/id/OIP.WJsUVR0c-0mPN_qi3Uz9HwAAAA',
-  },
-];
-
 const Choose = () => {
   const [myUserId] = useState(2002);
+  const [ready, setReady] = useState(false);
   const [roleUserMap, setRoleUserMap] = useState({});
+  const [users, setUsers] = useState([]);
   const [exchangeUserId, setExchangeUserId] = useState(null);
   const [exchangeUserName, setExchangeUserName] = useState('');
 
@@ -65,6 +49,8 @@ const Choose = () => {
   const handleRoleClick = roleId => {
     const targetUserId = roleUserMap[roleId];
     const previousRoleId = getRoleIdByUserId(myUserId);
+
+    if (ready) return;
 
     if (!targetUserId) {
       /**
@@ -92,6 +78,23 @@ const Choose = () => {
     }
   };
 
+  const handleReady = () => {
+    const myRoleId = getRoleIdByUserId(myUserId);
+
+    if (!myRoleId) return Toast.show('请选择角色');
+
+    // TODO:
+    // step1: do a ready ajax .then
+    // step2: wait websocket notice
+    setReady(!ready);
+
+    setUsers(users.map(item => (
+      item.userId === myUserId
+        ? { ...item, ready: !ready }
+        : item
+    )));
+  };
+
   // TODO: update the map with websocket.
   useEffect(() => {
     setRoleUserMap({
@@ -100,6 +103,29 @@ const Choose = () => {
       1003: null,
       1004: null,
     })
+  }, []);
+
+  useEffect(() => {
+    setUsers([
+      {
+        userId: 2001,
+        userName: '周杰伦',
+        userAvatar: 'https://tse3-mm.cn.bing.net/th/id/OIP.3t-Xs896vEZEb-xDyvhXqQHaHa',
+        ready: true,
+      },
+      {
+        userId: 2002,
+        userName: '王力宏的名字特别长',
+        userAvatar: 'https://tse1-mm.cn.bing.net/th/id/OIP.cP7NYl808r15j01i5mzI7AHaHa',
+        ready: false,
+      },
+      {
+        userId: 2004,
+        userName: '陈冠希',
+        userAvatar: 'https://tse2-mm.cn.bing.net/th/id/OIP.WJsUVR0c-0mPN_qi3Uz9HwAAAA',
+        ready: false,
+      },
+    ]);
   }, []);
 
   useEffect(() => {
@@ -121,6 +147,7 @@ const Choose = () => {
             <View
               className={classnames('choose__role-item', {
                 'choose__role-item--active': !!user,
+                'choose__role-item--mine': userId === myUserId,
               })}
               key={role.roleId}
               onClick={() => handleRoleClick(role.roleId)}
@@ -144,18 +171,23 @@ const Choose = () => {
                   ? <Image className="choose__user-avatar" src={user.userAvatar} />
                   : <View className="choose__user-avatar choose__user-avatar--empty" />
                 }
+                {user && user.ready && (
+                  <View className="choose__user-ready">
+                    已准备
+                  </View>
+                )}
               </View>
             </View>
           )
         })}
       </View>
-      <View className="choose__button-group">
+      <View className="fixed-group">
         <Button
           className="choose__ready"
           type="primary"
-          onClick={() => navigateTo('login')}
+          onClick={handleReady}
         >
-          准备
+          {!ready ? '准备': '取消准备'}
         </Button>
       </View>
       <Modal
@@ -165,6 +197,7 @@ const Choose = () => {
       >
         向「{exchangeUserName}」申请交换角色？
       </Modal>
+      {ready && <View className="choose__ready-shadow" />}
     </View>
   );
 };

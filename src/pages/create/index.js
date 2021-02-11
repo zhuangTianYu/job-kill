@@ -17,6 +17,8 @@ const list = [
     description: [
       '到南京时，有朋友约去游逛，勾留7了一日；第二日上午便须渡江到浦口，下午上车北去。父亲因为事忙，本已说定不送我，叫旅馆里一个熟识的茶房8陪我同去。',
       '他再三嘱咐茶房，甚是仔细。但他终于不放心，怕茶房不妥帖9；颇踌躇10了一会。其实我那年已二十岁，北京已来往过两三次，是没有什么要紧的了。他踌躇了一会，终于决定还是自己送我去。',
+      '我说道：“爸爸，你走吧。”他往车外看了看，说：“我买几个橘子去。你就在此地，不要走动。”我看那边月台的栅栏外有几个卖东西的等着顾客。走到那边月台，须穿过铁道，须跳下去又爬上去。',
+      '近几年来，父亲和我都是东奔西走，家中光景是一日不如一日。他少年出外谋生，独力支持，做了许多大事。哪知老境却如此颓唐！他触目伤怀，自然情不能自已。情郁于中，自然要发之于外；家庭琐屑便往往触他之怒。',
     ],
   },
   {
@@ -75,13 +77,15 @@ const Create = () => {
         list={list}
         onChange={nextId => setId(nextId)}
       />
-      <Button
-        className="create__button"
-        type="primary"
-        onClick={handleCreate}
-      >
-        创建游戏
-      </Button>
+      <View className="fixed-group">
+        <Button
+          className="create__button"
+          type="primary"
+          onClick={handleCreate}
+        >
+          创建游戏
+        </Button>
+      </View>
       <Modal
         visible={visible}
         onConfirm={() => {

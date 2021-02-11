@@ -1,9 +1,5 @@
 .choose {
-  padding: 30rpx;
-
-  &__roles {
-    margin-bottom: 132rpx;
-  }
+  padding: 30rpx 30rpx 182rpx;
 
   &__role-item {
     display: flex;
@@ -20,6 +16,11 @@
       color: #ffffff;
       border-color: #595959;
       background-color: #595959;
+    }
+
+    &--mine {
+      position: relative;
+      z-index: 20;
     }
   }
 
@@ -40,6 +41,7 @@
   }
 
   &__role-user {
+    position: relative;
     width: 160rpx;
     font-size: 0;
     flex-shrink: 0;
@@ -61,19 +63,33 @@
   &__user-avatar {
     width: 160rpx;
     height: 160rpx;
-    border-radius: 10rpx;
+    border-radius: 6rpx;
 
     &--empty {
       border: 1rpx solid #8c8c8c;
     }
   }
 
-  &__button-group {
-    position: fixed;
+  &__user-ready {
+    position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 30rpx;
-    background-image: linear-gradient(to top, rgba(#f5f5f5, 1), rgba(#f5f5f5, 0));
+    color: #262626;
+    font-size: 24rpx;
+    line-height: 38rpx;
+    text-align: center;
+    border-radius: 0 0 6rpx 6rpx;
+    background-color: #ffffff;
+  }
+
+  &__ready-shadow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(#ffffff, 0.6);
+    z-index: 10;
   }
 }
