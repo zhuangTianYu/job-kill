@@ -1,8 +1,8 @@
 export default {
   pages: [
+    'pages/choose/index',
     'pages/create/index',
     'pages/login/index',
-    'pages/choose/index',
   ],
   window: {
     backgroundTextStyle: 'light',
