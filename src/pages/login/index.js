@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Taro from '@tarojs/taro';
 import { View, Image, Button } from '@tarojs/components';
 import { Tips, Toast } from '@components';
+import Logo from '@assets/job-kill-logo.png';
 import { navigateTo } from '@utils';
 import './index.less';
-
-const LOGO_SRC = 'https://job-kill-1258578938.cos.ap-beijing.myqcloud.com/job-kill-logo.png';
 
 const Login = () => {
   const [code, setCode] = useState('');
@@ -35,7 +34,7 @@ const Login = () => {
   return (
     <View className="login">
       <View className="login__content">
-        <Image className="login__logo" src={LOGO_SRC} />
+        <Image className="login__logo" src={Logo} />
         <Tips
           list={[
             '您的信息需授权以登录「工作杀」小程序。',
