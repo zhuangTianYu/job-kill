@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { View, Image, Button } from '@tarojs/components';
+import { Modal } from '@components';
 import { navigateTo } from '@utils';
 import './index.less';
 
@@ -49,14 +50,65 @@ const users = [
   },
 ];
 
-const roleUserMap = {
-  1001: 2001,
-  1002: 2002,
-  1003: 2004,
-  1004: null,
-};
-
 const Choose = () => {
+  const [myUserId] = useState(2002);
+  const [roleUserMap, setRoleUserMap] = useState({});
+  const [exchangeUserId, setExchangeUserId] = useState(null);
+  const [exchangeUserName, setExchangeUserName] = useState('');
+
+  const getRoleIdByUserId = userId => {
+    const roleId = Object.keys(roleUserMap).find(item => roleUserMap[item] === userId);
+
+    return roleId ? +roleId : null;
+  };
+
+  const handleRoleClick = roleId => {
+    const targetUserId = roleUserMap[roleId];
+    const previousRoleId = getRoleIdByUserId(myUserId);
+
+    if (!targetUserId) {
+      /**
+       * TODO: do ajax action
+       *   .then(根据返回体，更新 roleUserMap)
+       *   .catch(根据错误状态，展示交换角色弹窗)
+       *
+       * ATTENTION:
+       *   以下为非最终逻辑，仅模拟前端交互用
+       */
+      const updateRoles = { [roleId]: myUserId };
+
+      if (previousRoleId) {
+        updateRoles[previousRoleId] = null;
+      }
+
+      setRoleUserMap({
+        ...roleUserMap,
+        ...updateRoles,
+      });
+    }
+
+    if (targetUserId !== myUserId) {
+      setExchangeUserId(targetUserId);
+    }
+  };
+
+  // TODO: update the map with websocket.
+  useEffect(() => {
+    setRoleUserMap({
+      1001: 2001,
+      1002: null,
+      1003: null,
+      1004: null,
+    })
+  }, []);
+
+  useEffect(() => {
+    if (exchangeUserId) {
+      const exchangeUser = users.find(item => item.userId === exchangeUserId);
+
+      setExchangeUserName(exchangeUser.userName);
+    }
+  }, [exchangeUserId]);
 
   return (
     <View className="choose">
@@ -71,6 +123,7 @@ const Choose = () => {
                 'choose__role-item--active': !!user,
               })}
               key={role.roleId}
+              onClick={() => handleRoleClick(role.roleId)}
             >
               <View className="choose__role-detail">
                 <View className="choose__role-name">
@@ -105,6 +158,13 @@ const Choose = () => {
           准备
         </Button>
       </View>
+      <Modal
+        visible={!!exchangeUserId}
+        onCancel={() => setExchangeUserId(null)}
+        onConfirm={() => setExchangeUserId(null)}
+      >
+        向「{exchangeUserName}」申请交换角色？
+      </Modal>
     </View>
   );
 };
