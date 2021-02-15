@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro';
 import { View, Image, Button } from '@tarojs/components';
 import { Tips, Toast } from '@components';
 import Logo from '@assets/job-kill-logo.png';
+import { login } from '@service';
 import { navigateTo } from '@utils';
 import './index.less';
 
@@ -15,10 +16,19 @@ const Login = () => {
     // TODO: set a logical field to validate
     if (!userInfo) return;
 
-    // TODO: do login action with params
-    console.log({ ...detail, code });
+    const { nickName, avatarUrl, gender } = userInfo;
 
-    navigateTo('create');
+    console.log({ nickName, avatarUrl, gender, code });
+
+    login()
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        Toast.show(`catched ${error.message}`);
+      });
+
+    // navigateTo('create');
   };
 
   useEffect(() => {
