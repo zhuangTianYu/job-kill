@@ -21,11 +21,8 @@ const Login = () => {
     console.log({ nickName, avatarUrl, gender, code });
 
     login()
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        Toast.show(`catched ${error.message}`);
+      .then(() => {
+        console.log('login.then');
       });
 
     // navigateTo('create');

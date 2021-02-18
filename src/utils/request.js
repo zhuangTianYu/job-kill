@@ -1,12 +1,15 @@
 import Taro from '@tarojs/taro';
 import { Toast, Loading } from '@components';
 
-let loadingCount = 0;
+let fetchingCount = 0;
 
 /**
  * @request
+ * @param {string} url 请求接口路径
+ * @param {object} data 请求接口参数
  * @param {boolean} loading 默认开启 loading
  * @param {boolean} catchError 默认捕获业务异常，并 toast 提示错误；否则返回完整 httpData，调用者自行捕获
+ * @other 其它入参请参考：https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html
  */
 export const request = options =>
   new Promise((resolve, reject) => {
@@ -18,7 +21,7 @@ export const request = options =>
       ...rest
     } = options;
 
-    loading && ++loadingCount && Loading.show();
+    loading && ++fetchingCount && Loading.show();
 
     Taro.request({
       url,
@@ -27,20 +30,17 @@ export const request = options =>
       success: response => {
         const { statusCode: httpCode, data: httpData } = response;
 
-        console.log(response);
-
+        // 非 http 2XX 时，wx 将错误信息置于 httpData.
+        // 属于网络请求异常，直接抛出错误，无需后续 catchError 操作
         if (!/^2/.test(httpCode)) {
-          Toast.show(httpData);
-
-          return reject(new Error(httpData));
+          return Toast.show(httpData);
         }
 
         const { status, data, message } = httpData;
 
-        if (!status && catchError) {
-          Toast.show(message);
-
-          return reject(new Error(message));
+        // http 2XX 时，业务逻辑异常
+        if (!status) {
+          return catchError ? Toast.show(message) : reject(httpData);
         }
 
         resolve(data);
@@ -49,7 +49,7 @@ export const request = options =>
         reject(error);
       },
       complete: () => {
-        loading && !--loadingCount && Loading.hide();
+        loading && !--fetchingCount && Loading.hide();
       },
     })
   });
