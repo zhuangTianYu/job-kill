@@ -1,9 +1,8 @@
 # job-kill
 
 <img
-  src="https://job-kill-1258578938.cos.ap-beijing.myqcloud.com/job-kill-logo-root.png"
+  src="https://job-kill-1258578938.cos.ap-beijing.myqcloud.com/job-kill-logo.png"
   width="300"
-  style="margin-top: 20px;"
   alt="工作杀"
 />
 
@@ -23,6 +22,6 @@ The game we called script-killing, actually evolved from **Murder mystery games*
 
 ## Tools
 
-- [Taro](https://github.com/NervJS/taro) provides the way to develop **WeChat mini program** with framework like react.
+[Taro](https://github.com/NervJS/taro) provides the way to develop **WeChat mini program** with framework like react.
 
-- [React hooks](https://react.docschina.org/docs/hooks-intro.html).
+[React hooks](https://react.docschina.org/docs/hooks-intro.html).
