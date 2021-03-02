@@ -16,12 +16,12 @@ The game we called script-killing, actually evolved from **Murder mystery games*
 
 [Murder mystery games](https://en.wikipedia.org/wiki/Murder_mystery_game) are generally party games in which one of the partygoers is secretly playing a murderer, and the other attendees must determine who among them is the criminal.
 
-## Environment
+## Work at
 
 [WeChat mini program](https://developers.weixin.qq.com/miniprogram/dev/framework/).
 
-## Tools
+## Framework
 
-[Taro](https://github.com/NervJS/taro) provides the way to develop **WeChat mini program** with framework like react.
+[Taro](https://github.com/NervJS/taro) provides the way to develop WeChat mini program with framework like react.
 
-[React hooks](https://react.docschina.org/docs/hooks-intro.html).
+[React hooks](https://react.docschina.org/docs/hooks-intro.html) use state and other React features without writing a class.
